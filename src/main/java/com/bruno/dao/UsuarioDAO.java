@@ -53,5 +53,21 @@ public class UsuarioDAO {
         return users;
     }
 
+    public Usuario listarPorId(Long id){
+        Usuario usuario = null;
+        try {
+            String sql = "select * from userbancojava where id =?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setLong(1,id);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()){
+                usuario =  new Usuario(rs.getString(2),rs.getString(3),rs.getLong(1));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return usuario;
+    }
+
 
 }
