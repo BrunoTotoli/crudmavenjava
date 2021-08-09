@@ -14,6 +14,15 @@ public class Usuario {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
     public String getNome() {
         return nome;
     }
