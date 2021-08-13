@@ -11,7 +11,7 @@ public class Application {
 
     @Test
     public void testSalvar() {
-        Usuario usuario = new Usuario("Astolfo", "Astolfo@gmail.com", 3L);
+        Usuario usuario = new Usuario("Astolfo3", "Astolfo3@gmail.com");
         UsuarioDAO dao = new UsuarioDAO();
         dao.salvar(usuario);
     }

@@ -16,11 +16,10 @@ public class UsuarioDAO {
 
     public void salvar(Usuario usuario) {
         try {
-            String sql = "insert into userbancojava(id,nome,email) values(?,?,?)";
+            String sql = "insert into userbancojava(nome,email) values(?,?)";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setLong(1, usuario.getId());
-            stm.setString(2, usuario.getNome());
-            stm.setString(3, usuario.getEmail());
+            stm.setString(1, usuario.getNome());
+            stm.setString(2, usuario.getEmail());
             stm.execute();
             connection.commit();
         } catch (Exception exception) {
