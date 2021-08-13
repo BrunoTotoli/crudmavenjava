@@ -53,20 +53,52 @@ public class UsuarioDAO {
         return users;
     }
 
-    public Usuario listarPorId(Long id){
+    public Usuario listarPorId(Long id) {
         Usuario usuario = null;
         try {
-            String sql = "select * from userbancojava where id =?";
+            String sql = "select * from userbancojava where id =" + id;
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setLong(1,id);
             ResultSet rs = stm.executeQuery();
-            while (rs.next()){
-                usuario =  new Usuario(rs.getString(2),rs.getString(3),rs.getLong(1));
+            while (rs.next()) {
+                usuario = new Usuario(rs.getString(2), rs.getString(3), rs.getLong(1));
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return usuario;
+    }
+
+    public void atualizarEmailUsuario(Usuario usuario, String novoEmail) {
+        try {
+            String sql = "update userbancojava set email = ? where id =" + usuario.getId();
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, novoEmail);
+            stm.execute();
+            connection.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    public void deletarPorId(Long id) {
+        try {
+            String sql = "delete from userbancojava where id = " + id;
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.execute();
+            connection.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 
 

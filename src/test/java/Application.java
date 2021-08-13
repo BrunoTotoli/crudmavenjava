@@ -29,4 +29,16 @@ public class Application {
         UsuarioDAO dao = new UsuarioDAO();
         System.out.println(dao.listarPorId(2L));
     }
+
+    @Test
+    public void testAtualizarEmail() {
+        UsuarioDAO dao = new UsuarioDAO();
+        dao.atualizarEmailUsuario(dao.listarPorId(3L), "Astolfoatualizado@gmail.com");
+    }
+
+    @Test
+    public void testDeletar() {
+        UsuarioDAO dao = new UsuarioDAO();
+        dao.deletarPorId(3L);
+    }
 }
